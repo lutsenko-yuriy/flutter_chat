@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_chat/widgets/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -12,14 +12,26 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
+  var _isLoading = false;
 
   void _submitAuthForm(
       String email, String password, String username, bool signup) async {
+
+    setState(() {
+      _isLoading = true;
+    });
+
     UserCredential authResult;
+
     try {
       if (signup) {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user?.uid)
+            .set({'username': username, 'email': email});
       } else {
         authResult = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
@@ -37,6 +49,10 @@ class _AuthScreenState extends State<AuthScreen> {
       ));
     } catch (err) {
       print(err);
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -44,7 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: AuthForm(submitAuthForm: _submitAuthForm),
+      body: AuthForm(submitAuthForm: _submitAuthForm, isLoading: _isLoading),
     );
   }
 }

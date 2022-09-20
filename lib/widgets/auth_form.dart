@@ -4,7 +4,11 @@ class AuthForm extends StatefulWidget {
   final Function(String email, String password, String username, bool signup)
       submitAuthForm;
 
-  const AuthForm({Key? key, required this.submitAuthForm}) : super(key: key);
+  final isLoading;
+
+  const AuthForm(
+      {Key? key, required this.submitAuthForm, required this.isLoading})
+      : super(key: key);
 
   @override
   State<AuthForm> createState() => _AuthFormState();
@@ -93,9 +97,11 @@ class _AuthFormState extends State<AuthForm> {
                 const SizedBox(
                   height: 12,
                 ),
-                ElevatedButton(
-                    onPressed: _trySubmit,
-                    child: Text(_signupMode ? "Sign up" : "Login")),
+                widget.isLoading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _trySubmit,
+                        child: Text(_signupMode ? "Sign up" : "Login")),
                 TextButton(
                   onPressed: _toggleSignupMode,
                   child: Text(_signupMode
