@@ -34,6 +34,7 @@ class Messages extends StatelessWidget {
                         return MessageBubble(
                             key: ValueKey(doc.id),
                             message: doc['text'],
+                            username: doc['username'],
                             isMe: doc['userId'] ==
                                 messagesSnapshot.data!.uid,
                           );

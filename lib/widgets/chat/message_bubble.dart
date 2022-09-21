@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
   final String message;
-  final isMe;
+  final bool isMe;
 
-  const MessageBubble({Key? key, required this.message, this.isMe = false})
+  final String username;
+
+  const MessageBubble(
+      {Key? key,
+      required this.message,
+      required this.username,
+      this.isMe = false})
       : super(key: key);
 
   @override
@@ -28,11 +34,23 @@ class MessageBubble extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 2 / 3,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          child: Text(message,
-              style: TextStyle(
-                  color: isMe
-                      ? Colors.black
-                      : Theme.of(context).secondaryHeaderColor)),
+          child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Text(username,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isMe
+                          ? Colors.black
+                          : Theme.of(context).secondaryHeaderColor)),
+              Text(message,
+                  style: TextStyle(
+                      color: isMe
+                          ? Colors.black
+                          : Theme.of(context).secondaryHeaderColor)),
+            ],
+          ),
         ),
       ],
     );
