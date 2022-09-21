@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/widgets/chat/new_message.dart';
 
 import '../widgets/chat/messages.dart';
 
@@ -45,18 +46,8 @@ class ChatScreen extends StatelessWidget {
       body: Column(
         children: const [
           Expanded(child: Messages()),
+          NewMessage()
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection("chats/Agodhvj7GD75OwNwWSfb/messages")
-              .add({
-            'text':
-                "It is time to chew bubble gum and kick ass. And I'm all out of bubble gum."
-          });
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
