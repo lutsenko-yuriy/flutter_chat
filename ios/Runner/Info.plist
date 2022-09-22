@@ -47,5 +47,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can upload an avatar from your photos but we need your permission for it</string>
+	<key>NSCameraUsageDescription</key>
+    <string>You can make a photo and set it as avatar right away but we need your permission for it</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string></string>
 </dict>
 </plist>

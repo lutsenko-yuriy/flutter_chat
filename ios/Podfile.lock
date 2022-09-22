@@ -624,6 +624,9 @@ PODS:
   - Firebase/InAppMessaging (9.5.0):
     - Firebase/CoreOnly
     - FirebaseInAppMessaging (~> 9.5.0-beta)
+  - Firebase/Messaging (9.5.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 9.5.0)
   - firebase_auth (3.9.0):
     - Firebase/Auth (= 9.5.0)
     - firebase_core
@@ -633,6 +636,10 @@ PODS:
     - Flutter
   - firebase_in_app_messaging (0.6.0-24):
     - Firebase/InAppMessaging (= 9.5.0)
+    - firebase_core
+    - Flutter
+  - firebase_messaging (13.0.2):
+    - Firebase/Messaging (= 9.5.0)
     - firebase_core
     - Flutter
   - FirebaseABTesting (9.6.0):
@@ -690,6 +697,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (9.5.0):
+    - FirebaseCore (~> 9.0)
+    - FirebaseInstallations (~> 9.0)
+    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Reachability (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseMessagingInterop (9.6.0)
   - FirebaseSharedSwift (9.6.0)
   - Flutter (1.0.0)
@@ -786,6 +802,7 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_in_app_messaging (from `.symlinks/plugins/firebase_in_app_messaging/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
 
 SPEC REPOS:
@@ -805,6 +822,7 @@ SPEC REPOS:
     - FirebaseFunctions
     - FirebaseInAppMessaging
     - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseMessagingInterop
     - FirebaseSharedSwift
     - GoogleDataTransport
@@ -828,6 +846,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_in_app_messaging:
     :path: ".symlinks/plugins/firebase_in_app_messaging/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
 
@@ -840,6 +860,7 @@ SPEC CHECKSUMS:
   firebase_auth: c070c7e5b66037cddb73a68ca4bf4728b063680b
   firebase_core: 31872a49ffe0bf6f834e7044c7334e433536735a
   firebase_in_app_messaging: 2daf74a2675550dbd6b1d02241df647698473752
+  firebase_messaging: 0950bacaf29e1f50e3f0502aa1c29a3a5814925e
   FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
   FirebaseAppCheckInterop: d5ecda0c09f8069406643d6e0fa12c09d1b736e3
   FirebaseAuth: 741918f1fa62ed23246a509279f91d42d79a713f
@@ -852,6 +873,7 @@ SPEC CHECKSUMS:
   FirebaseFunctions: 9f6b1ae15651fff0107ef3abd2ee885b9c103236
   FirebaseInAppMessaging: 1f67c56c2d35b00328a2c40bdcb14f7a1611b089
   FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
+  FirebaseMessaging: 732623518591384f61c287e3d8f65294beb7ffb3
   FirebaseMessagingInterop: 348785028509e1a5a9af277123e7fc08b2d17306
   FirebaseSharedSwift: 2269c2ddc7a5efb7fb5f3f3177e790613b52dfda
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
