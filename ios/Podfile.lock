@@ -627,6 +627,9 @@ PODS:
   - Firebase/Messaging (9.5.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 9.5.0)
+  - Firebase/Storage (9.5.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 9.5.0)
   - firebase_auth (3.9.0):
     - Firebase/Auth (= 9.5.0)
     - firebase_core
@@ -640,6 +643,10 @@ PODS:
     - Flutter
   - firebase_messaging (13.0.2):
     - Firebase/Messaging (= 9.5.0)
+    - firebase_core
+    - Flutter
+  - firebase_storage (10.3.9):
+    - Firebase/Storage (= 9.5.0)
     - firebase_core
     - Flutter
   - FirebaseABTesting (9.6.0):
@@ -708,6 +715,15 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseMessagingInterop (9.6.0)
   - FirebaseSharedSwift (9.6.0)
+  - FirebaseStorage (9.5.0):
+    - FirebaseAppCheckInterop (~> 9.0)
+    - FirebaseAuthInterop (~> 9.0)
+    - FirebaseCore (~> 9.0)
+    - FirebaseCoreExtension (~> 9.0)
+    - FirebaseStorageInternal (~> 9.0)
+  - FirebaseStorageInternal (9.6.0):
+    - FirebaseCore (~> 9.0)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.7)
   - Flutter (1.0.0)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
@@ -782,6 +798,8 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (2.1.0)
+  - image_picker_ios (0.0.1):
+    - Flutter
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -803,7 +821,9 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_in_app_messaging (from `.symlinks/plugins/firebase_in_app_messaging/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
+  - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -825,6 +845,8 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseMessagingInterop
     - FirebaseSharedSwift
+    - FirebaseStorage
+    - FirebaseStorageInternal
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -848,8 +870,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_in_app_messaging/ios"
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
+  firebase_storage:
+    :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -861,6 +887,7 @@ SPEC CHECKSUMS:
   firebase_core: 31872a49ffe0bf6f834e7044c7334e433536735a
   firebase_in_app_messaging: 2daf74a2675550dbd6b1d02241df647698473752
   firebase_messaging: 0950bacaf29e1f50e3f0502aa1c29a3a5814925e
+  firebase_storage: 70c6c4d5f239037d49fc1eb5ee4c5087a194a308
   FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
   FirebaseAppCheckInterop: d5ecda0c09f8069406643d6e0fa12c09d1b736e3
   FirebaseAuth: 741918f1fa62ed23246a509279f91d42d79a713f
@@ -876,12 +903,15 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 732623518591384f61c287e3d8f65294beb7ffb3
   FirebaseMessagingInterop: 348785028509e1a5a9af277123e7fc08b2d17306
   FirebaseSharedSwift: 2269c2ddc7a5efb7fb5f3f3177e790613b52dfda
+  FirebaseStorage: a806d9f9eededf6fb1d906e79221b83ada1dbb4f
+  FirebaseStorageInternal: 81d8a597324ccd06c41a43c5700bc1185a2fc328
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431

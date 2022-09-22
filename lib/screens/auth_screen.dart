@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/widgets/auth/auth_form.dart';
 
@@ -14,9 +17,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
 
-  void _submitAuthForm(
-      String email, String password, String username, bool signup) async {
-
+  void _submitAuthForm(String email, String password, String username,
+      File? image, bool signup) async {
     setState(() {
       _isLoading = true;
     });
@@ -28,14 +30,36 @@ class _AuthScreenState extends State<AuthScreen> {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
 
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child("user_images")
+            .child('${authResult.user!.uid}.jpg');
+
+        String? imageUrl;
+        if (image != null) {
+          await ref.putFile(image).whenComplete(() {});
+
+          imageUrl = await ref.getDownloadURL();
+        }
+
+        var dataToSend = {'username': username, 'email': email};
+
+        if (imageUrl != null) {
+          dataToSend['image_url'] = imageUrl;
+        }
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(authResult.user?.uid)
-            .set({'username': username, 'email': email});
+            .set(dataToSend);
       } else {
         authResult = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
       }
+
+      setState(() {
+        _isLoading = false;
+      });
     } on FirebaseAuthException catch (err) {
       var message = 'An error occurred. Please check your credentials.';
 
@@ -49,10 +73,6 @@ class _AuthScreenState extends State<AuthScreen> {
       ));
     } catch (err) {
       print(err);
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 

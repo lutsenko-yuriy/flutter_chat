@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserImagePicker extends StatefulWidget {
-  const UserImagePicker({Key? key}) : super(key: key);
+  final void Function(File pickedImage) onImagePicked;
+
+  const UserImagePicker({Key? key, required this.onImagePicked})
+      : super(key: key);
 
   @override
   State<UserImagePicker> createState() => _UserImagePickerState();
@@ -16,8 +19,11 @@ class _UserImagePickerState extends State<UserImagePicker> {
   File? _pickedImage;
 
   Future<void> _pickImage() async {
-    final pickedImage =
-        await _imagePicker.pickImage(source: ImageSource.camera);
+    final pickedImage = await _imagePicker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+        maxWidth: 150,
+        maxHeight: 150);
     if (pickedImage?.path == null) {
       return;
     }
@@ -25,6 +31,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
     setState(() {
       _pickedImage = File(pickedImage!.path);
     });
+
+    widget.onImagePicked(_pickedImage!);
   }
 
   @override
@@ -34,12 +42,13 @@ class _UserImagePickerState extends State<UserImagePicker> {
         CircleAvatar(
           radius: 40,
           backgroundColor: Colors.grey,
-          backgroundImage: _pickedImage == null ? null : FileImage(_pickedImage!),
+          backgroundImage:
+              _pickedImage == null ? null : FileImage(_pickedImage!),
         ),
         TextButton.icon(
             onPressed: _pickImage,
             icon: const Icon(Icons.image),
-            label: const Text('Add I mage')),
+            label: const Text('Add Image')),
       ],
     );
   }
